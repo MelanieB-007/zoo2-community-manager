@@ -7,8 +7,7 @@ const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true,
   },
-  // Das hier zwingt Next.js, Prisma NICHT zu bündeln,
-  // sondern die Node.js-Version zu nehmen.
+
   serverExternalPackages: ["@prisma/client"],
 };
 
