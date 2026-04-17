@@ -1,5 +1,5 @@
-'use client';
-import { createGlobalStyle } from 'styled-components';
+"use client";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   /* 1. CSS Reset & Box-Sizing */
@@ -13,17 +13,23 @@ export const GlobalStyles = createGlobalStyle`
   html, body {
     height: 100%;
     width: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
 
   body {
+    overflow-x: hidden;
+    position: relative;
     background-color: ${({ theme }) => theme.colors.ui.bodyBg};
     color: ${({ theme }) => theme.colors.ui.textMain};
     font-family: ${({ theme }) => theme.fonts.text}; /* DM Sans */
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    scrollbar-gutter: stable;
   }
+  
+  
 
   /* 3. Typografie-Standards */
   h1, h2, h3, h4, h5, h6 {

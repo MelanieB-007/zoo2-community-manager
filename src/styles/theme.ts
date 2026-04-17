@@ -1,8 +1,4 @@
-import {
-  Sedgwick_Ave_Display,
-  DM_Sans,
-  Playfair_Display,
-} from "next/font/google";
+import { Sedgwick_Ave_Display, DM_Sans, Playfair_Display } from "next/font/google";
 
 const sedgwick = Sedgwick_Ave_Display({
   weight: "400",
@@ -26,26 +22,26 @@ export const theme = {
   colors: {
     // Deine Haupt-Farbgruppe (Petrol/Grün Mix)
     primary: {
-      50: "#d1e8e2",   // petrolLight
-      100: "#a3cfbb",  // greenLight
-      500: "#0e7a4a",  // petrol (Hauptfarbe)
-      600: "#056d42",  // petrolDark
-      700: "#1a4332",  // petrolGreenDark
-      800: "#004d4d",  // petrolDarker
-      900: "#2d5a27",  // greenDark
+      50: "#d1e8e2", // petrolLight
+      100: "#a3cfbb", // greenLight
+      500: "#0e7a4a", // petrol (Hauptfarbe)
+      600: "#056d42", // petrolDark
+      700: "#1a4332", // petrolGreenDark
+      800: "#004d4d", // petrolDarker
+      900: "#2d5a27", // greenDark
     },
     // Akzent-Farben (Orange/Gelb für Buttons & Highlights)
     accent: {
       light: "#DAE67F", // yellowLight
-      main: "#FF8C00",  // orange
+      main: "#FF8C00", // orange
       hover: "rgba(255, 165, 0, 1)", // orangeLight
-      warm: "#fceabb",  // warmWhite
+      warm: "#fceabb", // warmWhite
     },
     // Systemfarben (Zusatzfarben für Biome oder Status)
     system: {
       success: "#68B300", // green
       successLight: "#8dbd5b", // greenLighter
-      info: "#1d4ed8",    // blue
+      info: "#1d4ed8", // blue
       lime: "#d6efc0",
       honeydew: "#e8f5d7",
     },
@@ -56,6 +52,8 @@ export const theme = {
       bodyBg: "#f0f2f5",
       textMain: "#2c3531",
       border: "#d1e8e2",
+      icon: "#68B300",
+
       // Transparente Layer (Glas-Effekte)
       glassWhite: "rgba(255, 255, 255, 0.3)", // grey
       glassWhiteRich: "rgba(255, 255, 255, 0.4)", // greyLight
@@ -63,8 +61,13 @@ export const theme = {
       overlayLight: "rgba(0, 0, 0, 0.05)", // dropdownLink
     },
     header: {
-      bg: "#ffaf4a", // orange (Header spezieller Farbton)
-    }
+      bg: "#ffaf4a",
+      dropdownLink: "rgba(0, 0, 0, 0.05)",
+      avatartooltip: "#68B300",
+    },
+    main: {
+      title: "#68B300",
+    },
   },
   shadows: {
     soft: "0 8px 32px rgba(0, 0, 0, 0.2)",
