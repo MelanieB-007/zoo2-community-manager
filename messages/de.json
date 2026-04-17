@@ -1,0 +1,31 @@
+{
+  "Header": {
+    "Login": {
+      "login_open_menu": "Menü öffnen",
+      "login_logout": "Abmelden",
+      "login_button": "Anmelden",
+      "login_welcome": "Willkommen"
+    },
+    "Role": {
+      "role_admin": "Admin",
+      "role_Director": "Direktor",
+      "role_Employee": "Mitarbeiter",
+      "role_Member": "Mitglied",
+      "role_Visitor": "Besucher",
+      "role_": "Keine Rolle"
+    },
+    "Navigation": {
+      "home": "Home",
+      "animals": "Tiere",
+      "animal_overview": "Tierübersicht",
+      "animal_create": "Tier anlegen",
+      "club": "Klub",
+      "club_statues": "Statuen",
+      "club_contests": "Wettbewerbe",
+      "club_create_contest": "Wettbewerb anlegen"
+    }
+  },
+  "Footer": {
+    "footer_imprint": "Impressum"
+  }
+}
