@@ -1,0 +1,65 @@
+"use client";
+
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+
+import * as Styles from "./Login.styles";
+import LangSwitcher from "./LangSwitcher";
+import RoleBadge from "../../ui/badges/RoleBadge";
+import { useClickOutside } from "@/hooks/useClickOutside";
+
+export default function Login() {
+  const { data: session } = useSession();
+  const t = useTranslations("Header.Login");
+  const [showLogout, setShowLogout] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const user = session?.user;
+  // @ts-ignore - Falls die Rolle noch nicht im Standard-Typ von NextAuth ist
+  const userRole = user?.role || "";
+
+  useClickOutside(wrapperRef, () => setShowLogout(false));
+
+  return (
+    <Styles.LoginWrapper ref={wrapperRef}>
+      <Styles.TopRow>
+        <LangSwitcher />
+
+        {session ? (
+          <Styles.AvatarContainer>
+            <Styles.UserWrapper onClick={() => setShowLogout(!showLogout)}>
+              <Styles.UserImage src={user?.image || "/images/default-avatar.png"} alt="Profil" />
+              {!showLogout && (
+                <Styles.AvatarTooltip className="avatar-tooltip">
+                  {t("login_open_menu")} 🐾
+                </Styles.AvatarTooltip>
+              )}
+            </Styles.UserWrapper>
+
+            {showLogout && (
+              <Styles.LogoutBadge onClick={() => signOut({ callbackUrl: "/" })}>
+                {t("login_logout")} 👋
+              </Styles.LogoutBadge>
+            )}
+          </Styles.AvatarContainer>
+        ) : (
+          <Styles.HeaderButton onClick={() => signIn("discord")}>
+            {t("login_button")}
+          </Styles.HeaderButton>
+        )}
+      </Styles.TopRow>
+
+      {session && (
+        <Styles.BottomRow>
+          <Styles.FlexContainer>
+            <RoleBadge role={userRole} />
+            <Styles.WelcomeText>
+              {t("login_welcome")}, {user?.name?.split(" ")[0]}!
+            </Styles.WelcomeText>
+          </Styles.FlexContainer>
+        </Styles.BottomRow>
+      )}
+    </Styles.LoginWrapper>
+  );
+}
