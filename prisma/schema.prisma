@@ -1,11 +1,11 @@
-generator client {
-  provider      = "prisma-client-js"
-  output        = "./generated"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+datasource db {
+  provider     = "mysql"
+  relationMode = "prisma"
 }
 
-datasource db {
-  provider = "mysql"
+generator client {
+  provider = "prisma-client-js"
+  // Entferne 'output', um Komplikationen mit Umgebungsvariablen zu vermeiden
 }
 
 model Language {
