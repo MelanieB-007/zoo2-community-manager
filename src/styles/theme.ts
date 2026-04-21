@@ -53,6 +53,7 @@ export const theme = {
       textMain: "#2c3531",
       border: "#d1e8e2",
       icon: "#68B300",
+      pageBg: "#d6efc0", //lime
 
       // Transparente Layer (Glas-Effekte)
       glassWhite: "rgba(255, 255, 255, 0.3)", // grey

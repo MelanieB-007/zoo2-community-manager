@@ -1,36 +1,36 @@
-"use client";
-import styled from "styled-components";
+import { getTranslations } from "next-intl/server";
+import PageWrapper from "@/components/page-structure/page/PageWrapper";
+import HomeView from "@/components/pages/Home/HomeViex";
+import { getCountAnimals, getCountSpecialCoats } from "@/service/AnimalService";
+import { getHabitatCount } from "@/service/BiomeService";
 
-const WelcomeWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: ${({ theme }) => theme.spacing(10)};
-  text-align: center;
-`;
+export default async function IndexPage() {
+  const t = await getTranslations("Home");
 
-const HeroTitle = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 3rem;
-  color: ${({ theme }) => theme.colors.primary[500]};
-`;
+  // Daten auf dem Server holen
+  const stats = {
+    tierCount: await getCountAnimals(),
+    specialCoatCount: await getCountSpecialCoats(),
+    habitatCount: await getHabitatCount(),
+  };
 
-const BadgeExample = styled.span`
-  background: ${({ theme }) => theme.colors.accent.main};
-  color: white;
-  padding: 4px 12px;
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  font-size: 0.9rem;
-  margin-top: ${({ theme }) => theme.spacing(2)};
-`;
+  const trans = {
+    badge_community: t("badge_community"),
+    stats_animals: t("Stats.animals"),
+    stats_specialCoat: t("Stats.specialCoat"),
+    stats_biomes: t("Stats.biomes"),
+    stats_regions: t("Stats.regions"),
+    cards_lexicon_title: t("Cards.lexicon.title"),
+    cards_lexicon_text: t("Cards.lexicon.text"),
+    cards_specialCoat_title: t("Cards.specialCoat.title"),
+    cards_specialCoat_text: t("Cards.specialCoat.text"),
+    cards_club_title: t("Cards.club.title"),
+    cards_club_text: t("Cards.club.text"),
+  };
 
-export default function HomePage() {
   return (
-    <WelcomeWrapper>
-      <HeroTitle>Willkommen im Zoo 2 Manager</HeroTitle>
-      <p>Dein Community-Tool für den perfekten Park.</p>
-      <BadgeExample>Beta-Phase 🐾</BadgeExample>
-    </WelcomeWrapper>
+    <PageWrapper>
+      <HomeView stats={stats} t={trans} />
+    </PageWrapper>
   );
 }
