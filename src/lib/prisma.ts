@@ -5,6 +5,7 @@ import { connect } from "@tidbcloud/serverless";
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 const prismaClientSingleton = () => {
+  console.log("DATABASE_URL:", process.env.DATABASE_URL ?? "UNDEFINED!");
   const connection = connect({ url: process.env.DATABASE_URL });
   const adapter = new PrismaTiDBCloud(connection as any);
   return new PrismaClient({ adapter, log: ["error"] });
