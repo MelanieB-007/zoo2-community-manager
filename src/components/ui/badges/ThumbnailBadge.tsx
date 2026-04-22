@@ -15,7 +15,7 @@ interface ItemThumbnailProps {
   tooltip?: boolean;
 }
 
-export default function ItemThumbnail({
+export default function ThumbnailBadge({
   image,
   name,
   habitat,
