@@ -4,8 +4,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
-  // Entferne 'output', um Komplikationen mit Umgebungsvariablen zu vermeiden
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 model Language {
