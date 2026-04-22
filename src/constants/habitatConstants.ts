@@ -1,5 +1,3 @@
-// src/utils/habitatConstants.ts
-
 export type HabitatType =
   | "grassland"
   | "plains"
