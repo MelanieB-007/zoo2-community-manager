@@ -1,16 +1,13 @@
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { PrismaTiDBCloud } from "@tidbcloud/prisma-adapter";
-import { connect } from "@tidbcloud/serverless";
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 const prismaClientSingleton = () => {
-  console.log("DATABASE_URL:", process.env.DATABASE_URL ?? "UNDEFINED!");
-  const connection = connect({ url: process.env.DATABASE_URL });
-  const adapter = new PrismaTiDBCloud(connection as any);
+  const adapter = new PrismaTiDBCloud({ url: process.env.DATABASE_URL });
   return new PrismaClient({ adapter, log: ["error"] });
 };
-
 const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;

@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^7.7.0",
+    "@prisma/client": "^6.19.3",
     "@tidbcloud/prisma-adapter": "^6.17.0",
     "@tidbcloud/serverless": "^0.3.0",
     "dotenv": "^17.4.2",
@@ -37,7 +37,7 @@
     "eslint-config-next": "15.1.0",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "prisma": "^7.7.0",
+    "prisma": "^6.19.3",
     "typescript": "^5"
   },
   "prisma": {
