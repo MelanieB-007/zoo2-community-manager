@@ -4,9 +4,9 @@ import React from "react";
 import styled from "styled-components";
 
 interface CardActions {
-  onClick: () => void;
-  onEdit: () => void;
-  onDelete: () => void;
+  onItemClick: (id: number) => void;
+  onEdit: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
 interface MobileListViewProps<T> {
@@ -29,7 +29,7 @@ export default function MobileListView<T extends { id: number }>({
       {currentItems.map((item) => (
         <React.Fragment key={item.id}>
           {renderCardAction(item, {
-            onClick: () => onItemClick?.(item.id),
+            onItemClick: () => onItemClick?.(item.id),
             onEdit: () => onEdit?.(item.id),
             onDelete: () => onDelete?.(item.id),
           })}

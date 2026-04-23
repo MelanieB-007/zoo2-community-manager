@@ -14,9 +14,9 @@ export default function ResultsInfo({ currentCount = 0, totalCount = 0 }: Result
 
   return (
     <StyledInfo>
-      {t("results_show")} <strong>{currentCount}</strong>
-      {t("results_of")} <strong>{totalCount}</strong>
-      {t("results_unit")}
+      {t("results.show")} <strong>{currentCount}</strong>&nbsp;
+      {t("results.of")} <strong>{totalCount}</strong>&nbsp;
+      {t("results.unit")}
     </StyledInfo>
   );
 }

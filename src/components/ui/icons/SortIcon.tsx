@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface SortIconProps {
   columnKey: string;
-  currentSortBy: string;
+  currentSortBy: string | null;
   direction: "asc" | "desc";
 }
 export default function SortIcon({ columnKey, currentSortBy, direction }: SortIconProps) {

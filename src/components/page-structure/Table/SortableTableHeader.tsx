@@ -7,7 +7,7 @@ interface SortableTableHeaderProps {
   label: string;
   columnKey: string;
   onSort: () => void;
-  currentSortBy: string;
+  currentSortBy: string | null;
   sortDirection: "asc" | "desc";
   align?: "left" | "center" | "right";
   tooltipText?: string;

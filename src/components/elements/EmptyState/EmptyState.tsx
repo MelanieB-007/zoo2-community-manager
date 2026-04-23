@@ -25,8 +25,8 @@ export default function EmptyState({
     <Styles.OuterContainer>
       <Styles.Container>
         <Styles.SpeechBubble>
-          <h3>{title || t("title_animals")}</h3>
-          <p>{message || t("message_animals")}</p>
+          <h3>{title || t("title")}</h3>
+          <p>{message || t("message")}</p>
         </Styles.SpeechBubble>
 
         <Styles.UppyPortraitFrame>
