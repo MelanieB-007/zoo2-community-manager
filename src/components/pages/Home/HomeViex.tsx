@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import * as Styles from "./HomeView.styles";
 
 interface HomeViewProps {
@@ -42,29 +40,23 @@ export default function HomeView({ stats, t }: HomeViewProps) {
           </Styles.StatsBar>
 
           <Styles.ActionGrid>
-            <Link href="/AnimalOverview">
-              <Styles.MenuCard $color="#4ca64c">
-                <Styles.Icon>🐾</Styles.Icon>
-                <h3>{t.cards_lexicon_title}</h3>
-                <p>{t.cards_lexicon_text}</p>
-              </Styles.MenuCard>
-            </Link>
+            <Styles.MenuCard href="/AnimalOverview" $color="#4ca64c">
+              <Styles.Icon>🐾</Styles.Icon>
+              <h3>{t.cards_lexicon_title}</h3>
+              <p>{t.cards_lexicon_text}</p>
+            </Styles.MenuCard>
 
-            <Link href="/varianten">
-              <Styles.MenuCard $color="#3498db">
-                <Styles.Icon>🎨</Styles.Icon>
-                <h3>{t.cards_specialCoat_title}</h3>
-                <p>{t.cards_specialCoat_text}</p>
-              </Styles.MenuCard>
-            </Link>
+            <Styles.MenuCard href="/varianten" $color="#3498db">
+              <Styles.Icon>🎨</Styles.Icon>
+              <h3>{t.cards_specialCoat_title}</h3>
+              <p>{t.cards_specialCoat_text}</p>
+            </Styles.MenuCard>
 
-            <Link href="/klub">
-              <Styles.MenuCard $color="#f39c12">
-                <Styles.Icon>🏆</Styles.Icon>
-                <h3>{t.cards_club_title}</h3>
-                <p>{t.cards_club_text}</p>
-              </Styles.MenuCard>
-            </Link>
+            <Styles.MenuCard href="/klub" $color="#f39c12">
+              <Styles.Icon>🏆</Styles.Icon>
+              <h3>{t.cards_club_title}</h3>
+              <p>{t.cards_club_text}</p>
+            </Styles.MenuCard>
           </Styles.ActionGrid>
         </Styles.ContentWrapper>
       </Styles.HeroSection>

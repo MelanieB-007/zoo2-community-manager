@@ -15,7 +15,6 @@ export default async function IndexPage() {
   };
 
   const trans = {
-    badge_community: t("badge_community"),
     stats_animals: t("Stats.animals"),
     stats_specialCoat: t("Stats.specialCoat"),
     stats_biomes: t("Stats.biomes"),

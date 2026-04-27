@@ -49,7 +49,7 @@ export const theme = {
     ui: {
       white: "#ffffff",
       whiteSoft: "#f0f4eb", // whiteLight
-      bodyBg: "#f0f2f5",
+      bodyBg: "#c4f3fb",
       textMain: "#2c3531",
       border: "#d1e8e2",
       icon: "#68B300",

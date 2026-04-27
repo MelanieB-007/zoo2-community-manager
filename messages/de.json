@@ -1,10 +1,10 @@
 {
   "Header": {
     "Login": {
-      "login_open_menu": "Menü öffnen",
-      "login_logout": "Abmelden",
-      "login_button": "Anmelden",
-      "login_welcome": "Willkommen"
+      "open_menu": "Menü öffnen",
+      "logout": "Abmelden",
+      "button": "Anmelden",
+      "welcome": "Hej"
     },
     "Role": {
       "role_admin": "Admin",
@@ -25,8 +25,12 @@
       "club_create_contest": "Wettbewerb anlegen"
     }
   },
+  "Pagination": {
+    "prev": "Zurück",
+    "next": "Weiter"
+  },
   "Footer": {
-    "footer_imprint": "Impressum"
+    "imprint": "Impressum"
   },
   "Home": {
     "Stats": {
@@ -49,5 +53,58 @@
         "text": "Sei ein Mitglied unseres Klubs und gewinne tolle Statuen bei den Wettbewerben."
       }
     }
+  },
+  "Animals": {
+    "species": "Art",
+    "messages": {
+      "createSuccess": "Tier erfolgreich angelegt! 🐾",
+      "deleteSuccess": "Das Tier wurde erfolgreich gelöscht! 🐾",
+      "editSuccess": "Änderungen erfolgreich gespeichert! 🐾",
+      "deleteError": "Fehler beim Löschen des Tieres. Bitte versuche es erneut.",
+      "deleteErrorTitle": "Tier löschen?",
+      "confirmDelete": "Bist du sicher, dass du dieses Tier unwiderruflich löschen möchtest? Alle verknüpften Daten wie Texte und XP-Werte gehen dabei verloren."
+    },
+    "overview_title": "Übersicht über alle Tiere"
+  },
+  "Common": {
+    "messages": {
+      "yes_delete": "Ja, löschen!",
+      "cancel": "Abbrechen"
+    },
+    "price": "Preis",
+    "actions": "Aktionen",
+    "scroll_to_top": "Nach oben scrollen"
+  },
+  "Filter": {
+    "search_placeholder": "Suche nach Tieren...",
+    "all_enclosures": "Alle Gehege",
+    "all_levels": "Alle Levels",
+    "level_label": "Level",
+    "results": {
+      "show": "Angezeigt",
+      "of": "von",
+      "unit": "Tiere gefunden"
+    }
+  },
+  "Buttons": {
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "add": "Hinzufügen"
+  },
+  "EmptyState": {
+    "title": "Oje, kein Tier da!",
+    "uppySad": "Uppy ist traurig",
+    "message": "Uppy hat überall gesucht, konnte aber nichts finden.",
+    "button": "Suche neu starten"
+  },
+  "Biome": {
+    "enclosure": "Gehege",
+    "shelterLevel": "Stall Level"
+  },
+  "Errors": {
+    "imageNotFound": "Bild nicht gefunden"
+  },
+  "Tooltip": {
+    "level": "Level"
   }
 }

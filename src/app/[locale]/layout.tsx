@@ -8,6 +8,7 @@ import Providers from "@/components/Providers";
 import Header from "@/components/page-structure/Header/Header";
 import Main from "@/components/page-structure/Main/Main";
 import Footer from "@/components/page-structure/Footer/Footer";
+import ScrollToTopBadge from "@/components/ui/badges/ScrollToTopBadge";
 
 export const metadata: Metadata = {
   title: "Zoo 2: Animal Park Manager",
@@ -27,16 +28,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={locale}>
       <body>
         <StyledComponentsRegistry>
-          <NextIntlClientProvider
-              locale={locale}
-              messages={messages}
-          >
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <Providers>
               <Header />
-              <Main>
-                {children}
-              </Main>
+              <Main>{children}</Main>
               <Footer />
+              <ScrollToTopBadge />
             </Providers>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
