@@ -3,6 +3,7 @@ export interface AnimalListItem {
   name: string;
   image: string;
   biomeName: string;
+  category: string;
   shelterLevel: number;
 }
 
