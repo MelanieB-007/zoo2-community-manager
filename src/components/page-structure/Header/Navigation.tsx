@@ -3,14 +3,13 @@
 import { IoChevronDown } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
-// Importiere den lokalisierten Link
 import { usePathname, Link } from "@/i18n/routing";
 
 import * as Styles from "./Navigation.styles";
 import { navConfig } from "@/config/navigationData";
 
 export default function Navigation() {
-  const t = useTranslations("Header.Navigation");
+  const t = useTranslations();
   const { data: session } = useSession();
   const pathname = usePathname();
 
@@ -33,12 +32,12 @@ export default function Navigation() {
               {item.href && !item.subMenu ? (
                 // Nutze 'as={Link}' damit Styled Components den i18n-Link verwendet
                 <Styles.NavLink as={Link} href={item.href} $active={pathname === item.href}>
-                  {t(item.labelKey)}
+                  {t("Header.Navigation." + item.labelKey)}
                 </Styles.NavLink>
               ) : (
                 <>
                   <Styles.NavButton $active={checkActive(item)}>
-                    {t(item.labelKey)} <IoChevronDown className="arrow" />
+                    {t("Header.Navigation." + item.labelKey)} <IoChevronDown className="arrow" />
                   </Styles.NavButton>
                   <Styles.Dropdown>
                     {item.subMenu?.map((sub) => {
@@ -51,7 +50,7 @@ export default function Navigation() {
                             href={sub.href}
                             $active={pathname === sub.href}
                           >
-                            {t(sub.labelKey)}
+                            {t("Header.Navigation." + sub.labelKey)}
                           </Styles.DropdownLink>
                         </li>
                       );

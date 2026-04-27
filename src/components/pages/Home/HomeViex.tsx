@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import * as Styles from "./HomeView.styles";
 
 interface HomeViewProps {
