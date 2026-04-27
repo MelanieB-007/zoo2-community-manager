@@ -4,13 +4,13 @@ export const SelectWrapper = styled.div`
   position: relative;
   min-width: 240px;
   font-family: ${({ theme }) => theme.fonts.text};
+  z-index: 100;
 `;
 
 export const SelectHeader = styled.div<{ $isOpen: boolean }>`
   padding: 0 16px;
   height: 48px;
-  border: 2px solid
-    ${(props) => (props.$isOpen ? "${({ theme }) => theme.colors.primary[100]}" : "#e0e7d5")};
+  border: 2px solid ${(props) => (props.$isOpen ? props.theme.colors.primary[100] : "#e0e7d5")};
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.ui.white};
   cursor: pointer;
@@ -44,7 +44,7 @@ export const OptionsList = styled.div`
   border: 1px solid rgba(76, 166, 76, 0.2);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  z-index: 110;
+  z-index: 999;
   max-height: 250px;
   overflow-y: auto;
   padding: 8px;
@@ -69,6 +69,8 @@ export const FilterBar = styled.div`
   gap: 20px;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 10;
 
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
@@ -77,7 +79,7 @@ export const FilterBar = styled.div`
   padding: 20px;
   margin-bottom: 25px;
 
-  border: 1px solid rgba(76, 166, 76, 0.2);
+  border: 2px solid ${({ theme }) => theme.colors.primary["600"]};
   border-radius: ${({ theme }) => theme.borderRadius.main};
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 `;

@@ -50,8 +50,7 @@ const StyledThumbnail = styled.div<{ $habitat: string; $size: number }>`
   flex-shrink: 0;
 
   /* Dynamischer Rahmen basierend auf dem Habitat */
-  border: 3px solid
-    ${({ $habitat }) => habitatColors[$habitat]?.main || habitatColors.standard.main};
+  border: 3px solid ${({ $habitat }) => habitatColors[$habitat]?.main};
 
   transition:
     transform 0.2s ease-in-out,
@@ -64,10 +63,6 @@ const StyledThumbnail = styled.div<{ $habitat: string; $size: number }>`
     transform: scale(1.6);
     z-index: 100;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border-color: color-mix(
-      in srgb,
-      ${({ $habitat }) => habitatColors[$habitat]?.main || habitatColors.default.main},
-      white 20%
-    );
+    border-color: color-mix(in srgb, ${({ $habitat }) => habitatColors[$habitat]?.main}, white 20%);
   }
 `;

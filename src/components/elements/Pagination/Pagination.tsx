@@ -17,11 +17,11 @@ export default function Pagination({
   onNext,
   onPrev,
 }: PaginationProps) {
-  const t = useTranslations("Pagination");
+  const t = useTranslations();
 
   return (
     <Styles.SignpostAssembly>
-      <Tooltip text={t("common:pagination.prev")}>
+      <Tooltip text={t("Pagination.prev")}>
         <Styles.SignpostButton $direction="prev" onClick={onPrev} disabled={currentPage === 1} />
       </Tooltip>
 
@@ -31,7 +31,7 @@ export default function Pagination({
         </div>
       </Styles.PageIndicator>
 
-      <Tooltip text={t("common:pagination.next")}>
+      <Tooltip text={t("Pagination.next")}>
         <Styles.SignpostButton
           $direction="next"
           onClick={onNext}

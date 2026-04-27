@@ -24,7 +24,7 @@ export default function FilterBar({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const t = useTranslations("Filter");
+  const t = useTranslations();
   const [isPending, startTransition] = useTransition();
 
   // Aktuelle Werte aus der URL holen
@@ -61,7 +61,7 @@ export default function FilterBar({
     <Styles.FilterBar style={{ opacity: isPending ? 0.7 : 1 }}>
       <Styles.SearchInput
         type="text"
-        placeholder={t("search_placeholder")}
+        placeholder={t("Filter.search_placeholder")}
         value={searchTerm}
         onChange={(e) => updateFilters({ search: e.target.value })}
       />

@@ -19,7 +19,7 @@ export default function ShelterLevelBadge({
   showTooltip = true,
   size = 64,
 }: ShelterLevelBadgeProps) {
-  const t = useTranslations("Tooltip");
+  const t = useTranslations();
 
   const BadgeContent = (
     <ShelterContainer $size={size}>
@@ -33,7 +33,7 @@ export default function ShelterLevelBadge({
   }
 
   return (
-    <Tooltip text={`${t("level")}: ${level}`} position="bottom">
+    <Tooltip text={`${t("Tooltip.level")}: ${level}`} position="bottom">
       {BadgeContent}
     </Tooltip>
   );

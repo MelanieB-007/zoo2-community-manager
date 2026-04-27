@@ -18,7 +18,7 @@ export default function GameBadge({
   borderColor = "#4ca64c",
 }: GameBadgeProps) {
   const name = fileName?.trim();
-  const t = useTranslations("Errors");
+  const t = useTranslations();
 
   // Pfad-Logik
   const imagePath =
@@ -33,7 +33,7 @@ export default function GameBadge({
         alt={fileName}
         onError={(e) => {
           const target = e.target as HTMLImageElement;
-          console.error(t("image_not_found"), cleanPath);
+          console.error(t("Errors.imageNotFound"), cleanPath);
           target.src = "/images/placeholder.png";
         }}
       />

@@ -21,7 +21,7 @@ const StyledPageWrapper = styled.div`
   padding: 20px 20px;
   background-color: ${({ theme }) => theme.colors.ui.pageBg};
   border: 2px solid ${({ theme }) => theme.colors.primary["600"]};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.main};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 40px;

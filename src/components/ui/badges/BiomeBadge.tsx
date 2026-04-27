@@ -7,12 +7,14 @@ import { useTranslations } from "next-intl";
 
 import Tooltip from "@/components/ui/tooltip/Tooltip";
 import { habitatColors } from "@/constants/habitatConstants";
+import { getTechnicalBiomeName } from "@/constants/BiomePathMap";
 
 interface BiomeBadgeProps {
   type: string;
   showTooltip?: boolean;
   size?: number;
   label?: string;
+  tooltipLabel?: string;
 }
 
 export default function BiomeBadge({
@@ -20,20 +22,19 @@ export default function BiomeBadge({
   showTooltip = true,
   size = 20,
   label,
+  tooltipLabel,
 }: BiomeBadgeProps) {
-  const t = useTranslations("Biomes");
+  const t = useTranslations();
 
   // Normalisierung
   const safeType = type?.toLowerCase() || "default";
-
-  // Übersetzter Name für Tooltip und Alt-Text
-  const translatedName = t(safeType);
+  const technicalName = getTechnicalBiomeName(safeType);
 
   const BadgeContent = (
-    <StyledBadge $biomeType={safeType}>
+    <StyledBadge $biomeType={technicalName}>
       <NextImage
-        src={`/images/biomes/icons/${safeType}.webp`}
-        alt={translatedName}
+        src={`/images/biomes/${technicalName}/area.webp`}
+        alt={safeType}
         width={size}
         height={size}
         // Verhindert Layout-Shift, falls das Bild kurz lädt
@@ -45,7 +46,7 @@ export default function BiomeBadge({
 
   if (!showTooltip) return BadgeContent;
 
-  return <Tooltip text={`${translatedName} ${t("enclosure")}`}>{BadgeContent}</Tooltip>;
+  return <Tooltip text={`${tooltipLabel}`}>{BadgeContent}</Tooltip>;
 }
 
 const StyledBadge = styled.div<{ $biomeType: string }>`

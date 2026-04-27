@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const DesktopView = styled.div`
   display: block;
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
   }
@@ -9,12 +10,13 @@ export const DesktopView = styled.div`
 
 export const TableFrame = styled.div`
   background: ${({ theme }) => theme.colors.ui.white};
-  border: 2px solid ${({ theme }) => theme.colors.system.success}:
+  border: 2px solid ${({ theme }) => theme.colors.primary["600"]};
   border-radius: ${({ theme }) => theme.borderRadius.main};
-  overflow-x: auto;
-  overflow-y: hidden;
-  position: relative;
+
   margin-top: 10px;
+  overflow-y: visible;
+  position: relative;
+  z-index: 1;
 `;
 
 export const Table = styled.table`

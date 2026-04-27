@@ -10,13 +10,13 @@ interface ResultsInfoProps {
 }
 
 export default function ResultsInfo({ currentCount = 0, totalCount = 0 }: ResultsInfoProps) {
-  const t = useTranslations("Filter");
+  const t = useTranslations();
 
   return (
     <StyledInfo>
-      {t("results.show")} <strong>{currentCount}</strong>&nbsp;
-      {t("results.of")} <strong>{totalCount}</strong>&nbsp;
-      {t("results.unit")}
+      {t("Filter.results.show")} <strong>{currentCount}</strong>&nbsp;
+      {t("Filter.results.of")} <strong>{totalCount}</strong>&nbsp;
+      {t("Filter.results.unit")}
     </StyledInfo>
   );
 }

@@ -5,11 +5,9 @@ import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 
 import { Animal } from "@/types/animal";
-
 import SortableTableHeader from "@/components/page-structure/Table/SortableTableHeader";
-
 import BiomeBadge from "@/components/ui/badges/BiomeBadge";
-import CurrencyBadge from "@/components/ui/badges/CurrencyBadge";
+import CurrencyBadge, { CurrencyType } from "@/components/ui/badges/CurrencyBadge";
 import ShelterLevelBadge from "@/components/ui/badges/ShelterLevelBadge";
 import XPBadge from "@/components/ui/badges/XPBadge";
 import ActionBadge from "@/components/ui/badges/ActionBadge";
@@ -19,7 +17,7 @@ import { calculateTotalXP } from "@/util/AnimalUtil";
 
 interface AnimalDesktopTableProps {
   animals: Animal[];
-  sortBy: string;
+  sortBy: string | null;
   sortDirection: "asc" | "desc";
   onSort: (key: string) => void;
   onEdit: (id: number) => void;
@@ -34,8 +32,7 @@ export default function AnimalDesktopTable({
   onEdit,
   onDelete,
 }: AnimalDesktopTableProps) {
-  const t = useTranslations("Animals");
-  const tCommon = useTranslations("Common");
+  const t = useTranslations();
   const { data: session } = useSession();
 
   const isAdmin = session?.user?.role === "Director";
@@ -45,21 +42,21 @@ export default function AnimalDesktopTable({
       <thead>
         <tr>
           <SortableTableHeader
-            label={t("table.species")}
+            label={t("Animals.species")}
             onSort={() => onSort("name")}
             columnKey="name"
             currentSortBy={sortBy}
             sortDirection={sortDirection}
           />
           <SortableTableHeader
-            label={t("table.enclosure")}
+            label={t("Biome.enclosure")}
             onSort={() => onSort("biomeName")}
             columnKey="biomeName"
             currentSortBy={sortBy}
             sortDirection={sortDirection}
           />
           <SortableTableHeader
-            label={t("table.price")}
+            label={t("Common.price")}
             onSort={() => onSort("price")}
             columnKey="price"
             currentSortBy={sortBy}
@@ -67,7 +64,7 @@ export default function AnimalDesktopTable({
             align="right"
           />
           <SortableTableHeader
-            label={t("table.stall")}
+            label={t("Biome.shelterLevel")}
             onSort={() => onSort("shelterLevel")}
             columnKey="shelterLevel"
             currentSortBy={sortBy}
@@ -79,8 +76,9 @@ export default function AnimalDesktopTable({
             columnKey="xp"
             currentSortBy={sortBy}
             sortDirection={sortDirection}
+            align="right"
           />
-          {isAdmin && <th style={{ textAlign: "right" }}>{tCommon("actions")}</th>}
+          {isAdmin && <th style={{ textAlign: "right" }}>{t("Common.actions")}</th>}
         </tr>
       </thead>
       <tbody>
@@ -89,23 +87,24 @@ export default function AnimalDesktopTable({
             <tr key={animal.id}>
               <td>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <ThumbnailBadge image={animal.image} category={"any"} name={animal.name} />
+                  <ThumbnailBadge
+                    image={animal.image}
+                    category={`animals/${animal.category}`}
+                    name={animal.name}
+                  />
                   <strong>{animal.name}</strong>
                 </div>
               </td>
               <td>
-                <BiomeBadge type={animal.biomeName} />
+                <BiomeBadge type={animal.category} tooltipLabel={animal.biomeName} />
               </td>
               <td style={{ textAlign: "right" }}>
-                <CurrencyBadge
-                  value={animal.price}
-                  type={animal.priceType === "Diamond" ? "Diamond" : "Zoodollar"}
-                />
+                <CurrencyBadge value={animal.price} type={animal.priceType?.name as CurrencyType} />
               </td>
               <td>
-                <ShelterLevelBadge level={animal.shelterLevel} habitat={animal.biomeName} />
+                <ShelterLevelBadge level={animal.shelterLevel} habitat={animal.category} />
               </td>
-              <td>
+              <td style={{ textAlign: "right", paddingRight: "20px" }}>
                 <XPBadge label={calculateTotalXP(animal)} />
               </td>
               {isAdmin && (
@@ -120,12 +119,12 @@ export default function AnimalDesktopTable({
                     <ActionBadge
                       type="edit"
                       onClickAction={() => onEdit(animal.id)}
-                      tooltip={tCommon("edit")}
+                      tooltip={t("Buttons.edit")}
                     />
                     <ActionBadge
                       type="delete"
                       onClickAction={() => onDelete(animal.id)}
-                      tooltip={tCommon("delete")}
+                      tooltip={t("Buttons.delete")}
                     />
                   </div>
                 </td>
@@ -135,7 +134,7 @@ export default function AnimalDesktopTable({
         ) : (
           <tr>
             <td colSpan={isAdmin ? 6 : 5} style={{ textAlign: "center", padding: "40px" }}>
-              {t("empty.title")} 🐾
+              {t("EmptyState.title")} 🐾
             </td>
           </tr>
         )}

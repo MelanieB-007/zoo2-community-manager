@@ -19,20 +19,20 @@ export default function EmptyState({
   buttonText = "",
   onResetAction = () => {},
 }: EmptyStateProps) {
-  const t = useTranslations("EmptyState");
+  const t = useTranslations();
 
   return (
     <Styles.OuterContainer>
       <Styles.Container>
         <Styles.SpeechBubble>
-          <h3>{title || t("title")}</h3>
-          <p>{message || t("message")}</p>
+          <h3>{title || t("EmptyState.title")}</h3>
+          <p>{message || t("EmptyState.message")}</p>
         </Styles.SpeechBubble>
 
         <Styles.UppyPortraitFrame>
           <NextImage
             src="/images/uppy-traurig.png"
-            alt={t("uppySad")}
+            alt={t("EmptyState.uppySad")}
             width={240}
             height={320}
             style={{
@@ -43,7 +43,7 @@ export default function EmptyState({
 
         {onResetAction && (
           <Styles.ResetButton onClick={onResetAction}>
-            🐾 {buttonText || t("button")}
+            🐾 {buttonText || t("EmptyState.button")}
           </Styles.ResetButton>
         )}
       </Styles.Container>

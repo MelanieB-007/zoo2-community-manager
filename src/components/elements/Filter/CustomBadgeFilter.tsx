@@ -25,7 +25,7 @@ export default function CustomBadgeFilter<T>({
   renderBadge,
   getIdentifier,
 }: CustomBadgeFilterProps<T>) {
-  const t = useTranslations("Filter");
+  const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -37,13 +37,13 @@ export default function CustomBadgeFilter<T>({
     <Styles.SelectWrapper ref={wrapperRef}>
       <Styles.SelectHeader onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
         {isAllSelected ? (
-          <span>{t(allLabelKey)}</span>
+          <span>{t("Filter." + allLabelKey)}</span>
         ) : (
           <Styles.SelectedValue>
             {/* Wir suchen das Item, das zum selektierten Wert passt, um das Badge zu rendern */}
             {renderBadge(selectedValue as unknown as T)}
             <Styles.Label>
-              {labelPrefixKey && `${t(labelPrefixKey)} `}
+              {labelPrefixKey && `${t("Filter." + labelPrefixKey)} `}
               {selectedValue}
             </Styles.Label>
           </Styles.SelectedValue>
@@ -59,7 +59,7 @@ export default function CustomBadgeFilter<T>({
               setIsOpen(false);
             }}
           >
-            {t(allLabelKey)}
+            {t("Filter." + allLabelKey)}
           </Styles.Option>
 
           {items.map((item) => {
@@ -74,7 +74,7 @@ export default function CustomBadgeFilter<T>({
               >
                 {renderBadge(item)}
                 <Styles.Label>
-                  {labelPrefixKey && `${t(labelPrefixKey)} `}
+                  {labelPrefixKey && `${t("Filter." + labelPrefixKey)} `}
                   {id}
                 </Styles.Label>
               </Styles.Option>
