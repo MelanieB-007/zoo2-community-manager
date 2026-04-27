@@ -72,7 +72,8 @@
       "cancel": "Abbrechen"
     },
     "price": "Preis",
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "scroll_to_top": "Nach oben scrollen"
   },
   "Filter": {
     "search_placeholder": "Suche nach Tieren...",

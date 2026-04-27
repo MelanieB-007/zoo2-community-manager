@@ -9,11 +9,12 @@ import * as Styles from "./AnimalMobileCard.styles";
 import { Animal } from "@/types/animal";
 
 import ActionBadge from "@/components/ui/badges/ActionBadge";
-import GameBadge from "@/components/ui/badges/GameBadge";
 import BiomeBadge from "@/components/ui/badges/BiomeBadge";
 import ShelterLevelBadge from "@/components/ui/badges/ShelterLevelBadge";
 import { Name } from "@/components/elements/Name/Name";
 import PriceBadge from "@/components/ui/badges/PriceBadge";
+import { CurrencyType } from "@/components/ui/badges/CurrencyBadge";
+import GameBadge from "@/components/ui/badges/GameBadge";
 
 interface AnimalMobileCardProps {
   animal: Animal;
@@ -30,8 +31,6 @@ export default function AnimalMobileCard({
   const t = useTranslations();
   const { data: session } = useSession();
   const isAdmin = session?.user?.role === "Director";
-
-  const habitatId = animal.biomeName?.toLowerCase() || "standard";
 
   const displayName = animal.name;
 
@@ -57,16 +56,16 @@ export default function AnimalMobileCard({
         <Styles.PriceRow>
           <PriceBadge
             value={animal.price ?? 0}
-            type={animal.priceType === "Diamond" ? "Diamond" : "Zoodollar"}
+            type={(animal.priceType?.name ?? "Zoodollar") as CurrencyType}
           />
         </Styles.PriceRow>
 
         <Styles.IconsRow>
-          <GameBadge type={`tiere/${habitatId}`} fileName={animal.image} size={50} />
+          <GameBadge type={`animals/${animal.category}`} fileName={animal.image} size={50} />
 
-          <BiomeBadge type={animal.biomeName} size={35} />
+          <BiomeBadge type={animal.category} size={35} />
 
-          <ShelterLevelBadge level={animal.shelterLevel} habitat={animal.biomeName} />
+          <ShelterLevelBadge level={animal.shelterLevel} habitat={animal.category} />
         </Styles.IconsRow>
       </Styles.StatsRow>
     </Styles.CardContainer>
