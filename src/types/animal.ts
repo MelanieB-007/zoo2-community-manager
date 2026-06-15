@@ -4,9 +4,8 @@ import { Image } from "@/types/image";
 
 export interface Animal {
   id: number;
-  name: string;
   biome: Biome;
-  shelterLevel: number;
+  shelterLevel: number | null;
 
   // Optionale Felder
   releaseDate?: Date | string | null;
@@ -21,14 +20,14 @@ export interface Animal {
   breedingProbability?: number | null;
 
   // Relationen
-  animalxp?: any[];
-  game: any[];
-  origins: any[];
+  animalxp?: any[] | null;
+
+  origins?: any[] | null;
   animaltext: AnimalText[];
 }
 
 export interface AnimalText {
   id: number;
-  animalName: string;
-  animalDescription: string;
+  animalName: string | null;
+  animalDescription: string | null;
 }

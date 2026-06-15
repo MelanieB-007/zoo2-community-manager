@@ -10,7 +10,8 @@ import { StatusBadge } from "@/components/ui/badges/StatusBadge";
 import { useSession } from "next-auth/react";
 import ActionGroupBadge from "@/components/ui/badges/ActionGroupBadge";
 import { getAnimalImage } from "@/utils/AnimalUtil";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { getStatueName } from "@/utils/ContestUtil";
 
 interface ContestMobileCardProps {
   contest: Contest;
@@ -25,6 +26,7 @@ export default function ContestMobileCard({
   onEdit,
   onDelete,
 }: ContestMobileCardProps) {
+  const t = useTranslations();
   const locale = useLocale();
   const { data: session } = useSession();
   const isAdmin = session?.user?.role === "Director";
@@ -56,25 +58,29 @@ export default function ContestMobileCard({
       </Styles.CardHeader>
 
       <Styles.AnimalGrid>
-        {contest.conteststatue?.map((contestStatue) => {
+        {contest.conteststatue?.map((contestStatue, index) => {
           const statue = contestStatue.statue;
           const animal = statue.animal;
 
           if (!animal) return null;
-
-          const animalname = animal.name || "Unbekannt";
 
           return (
             <Styles.AnimalItem key={contestStatue.id}>
               {contestStatue.statue.animal.image && (
                 <ThumbnailBadge
                   image={getAnimalImage(contestStatue.statue.animal)}
-                  name={contestStatue.statue.animal.name}
                   biome={contestStatue.statue.animal.biome}
                   size={65}
                 />
               )}
-              <Styles.TinyName>{animalname}</Styles.TinyName>
+              <Styles.NameWrapper>
+                <Styles.animalNameMobile>
+                  {getStatueName(contestStatue.statue, "unbekannte Statue")}
+                </Styles.animalNameMobile>
+                {index === 3 && (
+                  <Styles.ColorLabel>{t("Contest.details.colorVariant")}</Styles.ColorLabel>
+                )}
+              </Styles.NameWrapper>
             </Styles.AnimalItem>
           );
         })}

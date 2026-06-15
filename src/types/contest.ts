@@ -6,7 +6,7 @@ export interface Contest {
   id: number;
   startDate: Date | string;
   endDate: Date | string;
-  active: boolean;
+  active: boolean | null;
 
   contestdonation?: ContestDonation[];
   conteststatue?: ContestStatue[];
@@ -14,7 +14,7 @@ export interface Contest {
 
 export interface ContestDonation {
   id: number;
-  contest: Contest;
+  contest?: Contest;
   animal: Animal;
   statue: Statue;
   puzzlePiece?: number | null;
@@ -23,6 +23,6 @@ export interface ContestDonation {
 
 export interface ContestStatue {
   id: number;
-  contest: Contest;
+  contest?: Contest;
   statue: Statue;
 }

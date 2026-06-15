@@ -39,10 +39,7 @@ export default function ContestDesktopTable({
       <thead>
         <tr>
           <ThPeriod>{t("Contest.contestOverview.table.period")}</ThPeriod>
-          <th colSpan={3}>{t("Contest.contestOverview.table.statues_animals")}</th>
-          <th style={{ textAlign: "right", paddingRight: "50px" }}>
-            {t("Contest.contestOverview.table.colorVariant")}
-          </th>
+          <th colSpan={4}>{t("Contest.contestOverview.table.statues_animals")}</th>
           <ThStatus>{t("Contest.contestOverview.table.status")}</ThStatus>
           <ActionsHeadline text={t("Common.actions")} />
         </tr>
@@ -72,18 +69,23 @@ export default function ContestDesktopTable({
               {/* Die Statuen/Tiere */}
               <td colSpan={4}>
                 <Styles.StatueGroup>
-                  {contest.conteststatue?.map((contestStatue) => {
+                  {contest.conteststatue?.map((contestStatue, index) => {
                     return (
                       <Styles.AnimalCard key={contestStatue.id}>
-                        {contestStatue.statue.animal.image && (
-                          <ThumbnailBadge
-                            image={getAnimalImage(contestStatue.statue.animal)}
-                            name={contestStatue.statue.animal.image}
-                            biome={contestStatue.statue.animal.biome}
-                            size={55}
-                          />
-                        )}
-                        <span>{getStatueName(contestStatue.statue, "unbekannte Statue")}</span>
+                        <ThumbnailBadge
+                          image={getAnimalImage(contestStatue.statue.animal)}
+                          biome={contestStatue.statue.animal.biome}
+                          size={50}
+                          tooltip={false}
+                        />
+                        <Styles.NameWrapper>
+                          <span>{getStatueName(contestStatue.statue, "unbekannte Statue")}</span>
+                          {index === 3 && (
+                            <Styles.ColorLabel>
+                              {t("Contest.details.colorVariant")}
+                            </Styles.ColorLabel>
+                          )}
+                        </Styles.NameWrapper>
                       </Styles.AnimalCard>
                     );
                   })}

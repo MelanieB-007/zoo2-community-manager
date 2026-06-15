@@ -2,7 +2,6 @@ import { PriceType } from "@/types/PriceType";
 
 export interface Biome {
   id: number;
-  name: string;
   description?: string;
   identifier: string;
 
@@ -12,7 +11,7 @@ export interface Biome {
   expansionCost?: number | null;
   priceTypeExpansionsCost?: PriceType | null;
 
-  size?: number;
+  size?: number | null;
   image?: string | null;
   biomestext?: BiomesText[];
 }
@@ -20,5 +19,5 @@ export interface Biome {
 export interface BiomesText {
   id: number;
   biomeName: string;
-  biomeDescription: string;
+  biomeDescription: string | null;
 }

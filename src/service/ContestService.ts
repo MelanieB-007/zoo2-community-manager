@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { Contest } from "@/types/contest";
 
 export async function getAllContests(locale: string = "de") {
   const contests = await prisma.contest.findMany({
@@ -7,6 +8,9 @@ export async function getAllContests(locale: string = "de") {
         include: {
           statue: {
             include: {
+              statuetext: {
+                where: { languageCode: locale },
+              },
               animal: {
                 include: {
                   biome: true,
@@ -22,8 +26,13 @@ export async function getAllContests(locale: string = "de") {
     },
   });
 
+  const mappedContest = contests.map((contest) => ({
+    ...contest,
+    active: Boolean(contest.active),
+  }));
+
   const now = new Date();
-  return contests.sort((a, b) => {
+  return mappedContest.sort((a, b) => {
     // 1. Prüfen, ob der Wettbewerb aktuell läuft
     const aAktiv = now >= new Date(a.startDate) && now <= new Date(a.endDate);
     const bAktiv = now >= new Date(b.startDate) && now <= new Date(b.endDate);
@@ -42,7 +51,7 @@ export async function createContest(data: any) {
     data: {
       startDate: new Date(data.startDate),
       endDate: new Date(data.endDate),
-      active: data.active,
+      active: Boolean(data.active),
 
       conteststatue: {
         create: data.statuenIds.map((id: number) => ({
@@ -59,7 +68,7 @@ export async function updateContest(id: number, data: any) {
     data: {
       startDate: new Date(data.startDate),
       endDate: new Date(data.endDate),
-      active: data.active,
+      active: Boolean(data.active),
 
       conteststatue: {
         // 1. Alle alten Verknüpfungen für diesen Wettbewerb entfernen
@@ -114,6 +123,9 @@ export async function getContestById(id: string, locale: string = "de") {
           include: {
             statue: {
               include: {
+                statuetext: {
+                  where: { languageCode: locale },
+                },
                 animal: {
                   include: {
                     animaltext: {
@@ -140,9 +152,28 @@ export async function getContestById(id: string, locale: string = "de") {
       return null;
     }
 
-    return contest;
+    if (contest) {
+      return {
+        ...contest,
+        active: Boolean(contest.active),
+      };
+    }
   } catch (error) {
     console.error(`Fehler in getContestById für ID ${id}:`, error);
     throw error;
   }
+}
+
+export async function getResultsByContestId(contestId: string) {
+  return prisma.contestDonation.findMany({
+    where: { id: parseInt(contestId) },
+    include: {
+      user: {
+        select: {
+          name: true,
+          id: true,
+        },
+      },
+    },
+  });
 }

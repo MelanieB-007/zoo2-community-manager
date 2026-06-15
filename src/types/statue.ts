@@ -9,7 +9,7 @@ export interface Statue {
   priceType?: PriceType | null;
   popularity?: number | null;
   sellingPrice?: number | null;
-  image?: Image | null;
+  image?: string | null;
   animal: Animal;
 }
 

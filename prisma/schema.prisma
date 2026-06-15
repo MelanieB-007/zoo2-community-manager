@@ -174,7 +174,7 @@ model Contest {
   id              Int               @id @unique(map: "contests") @default(autoincrement())
   startDate       DateTime
   endDate         DateTime
-  active          Int
+  active          Boolean?
   contestdonation ContestDonation[]
   conteststatue   ContestStatue[]
 
@@ -184,7 +184,7 @@ model Contest {
 model AnimalOrigin {
   id       Int     @id @unique(map: "originindex") @default(autoincrement())
   animalId Int
-  originId Int?
+  originId Int
   animal   Animal  @relation(fields: [animalId], references: [id], onDelete: Cascade, map: "animalOrigin_animalId_fkey")
   origin   Origin? @relation(fields: [originId], references: [id], onDelete: Cascade, map: "animalOrigin_originId_fkey")
 
@@ -218,14 +218,16 @@ model AnimalXP {
 }
 
 model ContestDonation {
-  id          Int     @id @default(autoincrement())
-  contestId   Int
-  userId      Int
-  animalId    Int
-  puzzlePiece Int
-  animal      Animal  @relation(fields: [animalId], references: [id], map: "contestDonation_animalId_fkey")
-  contest     Contest @relation(fields: [contestId], references: [id], onDelete: Cascade, map: "contestDonation_contestId_fkey")
-  user        User    @relation(fields: [userId], references: [id], map: "contestDonation_userId_fkey")
+  id        Int      @id @default(autoincrement())
+  contestId Int
+  userId    Int
+  animalId  Int
+  count     Int
+  level     Int
+  createdAt DateTime
+  animal    Animal   @relation(fields: [animalId], references: [id], map: "contestDonation_animalId_fkey")
+  contest   Contest  @relation(fields: [contestId], references: [id], onDelete: Cascade, map: "contestDonation_contestId_fkey")
+  user      User     @relation(fields: [userId], references: [id], map: "contestDonation_userId_fkey")
 
   @@index([animalId], map: "contestDonation_animalId_fkey")
   @@index([contestId], map: "contestDonation_contestId_idx")

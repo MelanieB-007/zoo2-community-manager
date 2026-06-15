@@ -123,6 +123,15 @@
       "running": "Läuft gerade",
       "upcoming": "Demnächst"
     },
+    "details": {
+      "headline": "Wettbewerbs-Planung",
+      "postAnimals": "Tiere melden",
+      "colorVariant": "Farbvariante",
+      "rang": "Rang",
+      "member": "Mitglied",
+      "points": "Punkte (xN)",
+      "noPosts": "Noch keine Meldungen"
+    },
     "contestOverview": {
       "overview_title": "Wettbewerbe",
       "table": {

@@ -6,11 +6,12 @@ import Tooltip from "@/components/ui/tooltip/Tooltip";
 import GameBadge from "@/components/ui/badges/GameBadge";
 import { habitatColors } from "@/constants/habitatConstants";
 import { Image } from "@/types/image";
+import { Biome } from "@/types/biome";
 
 interface ItemThumbnailProps {
   image: Image;
   name?: string;
-  biome?: { name: string };
+  biome?: Biome | null;
   size?: number;
   tooltip?: boolean;
 }
@@ -22,7 +23,7 @@ export default function ThumbnailBadge({
   size = 55,
   tooltip = true,
 }: ItemThumbnailProps) {
-  const habitatKey = (biome?.name || "standard").toLowerCase();
+  const habitatKey = (biome?.biomestext?.[0]?.biomeName || "standard").toLowerCase();
 
   const thumbnail = (
     <StyledThumbnail $habitat={habitatKey} $size={size}>
@@ -45,7 +46,7 @@ const StyledThumbnail = styled.div<{ $habitat: string; $size: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.ui.white};
   flex-shrink: 0;
 
   /* Dynamischer Rahmen basierend auf dem Habitat */

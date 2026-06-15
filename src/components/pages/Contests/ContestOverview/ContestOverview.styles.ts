@@ -24,38 +24,46 @@ export const Divider = styled.span`
 
 export const StatueGroup = styled.div`
   display: grid;
-  /* Erhöht auf 150px für bessere Lesbarkeit */
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  /* Fest auf 4 Spalten für die 4 Statuen */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   width: 100%;
-  min-width: 0;
+  padding: 8px 0;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr); /* Tablet-Ansicht */
+  }
 `;
+
 export const AnimalCard = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: white;
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  height: 100%;
+  min-height: 70px; /* Garantiert eine einheitliche Höhe */
+`;
+
+export const NameWrapper = styled.div`
+  display: flex;
+  flex-direction: column; /* Stapelt Name und Label untereinander */
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
 
   span {
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
-    white-space: normal;
-
-    /* 1. Line-Clamping */
+    color: #333;
+    /* Line-Clamping entfernen oder auf 3 erhöhen, damit Label Platz hat */
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
-    /* 2. Worttrennung erzwingen */
-    /* 'anywhere' ist stärker als 'break-word' und erlaubt Trennung an Silben */
     overflow-wrap: anywhere;
 
     /* 3. Hyphens mit Präfixen */
@@ -66,18 +74,7 @@ export const AnimalCard = styled.div`
 
     /* 4. Verhindert, dass 'word-break' die 'hyphens' Regel überschreibt */
     word-break: normal;
-
-    /* Hilft dem Browser, die Breite für die Trennung besser zu kalkulieren */
-    flex: 1;
-    min-width: 0;
   }
-`;
-
-export const SubText = styled.span`
-  font-size: 0.7rem;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 `;
 
 export const Card = styled.div`
@@ -115,9 +112,10 @@ export const DateInfo = styled.div`
 
 export const AnimalGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   padding: 5px 0;
+  align-items: stretch;
 `;
 
 export const AnimalItem = styled.div`
@@ -126,17 +124,25 @@ export const AnimalItem = styled.div`
   align-items: center;
   text-align: center;
   background: #fdfdfd;
-  padding: 6px;
+  padding: 10px 6px;
   border-radius: 8px;
   border: 1px solid #f0f0f0;
+  height: 100%;
 `;
 
-export const TinyName = styled(Name)`
-  font-size: 0.7rem;
-  margin-top: 4px;
-  color: #444;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
+export const animalNameMobile = styled.span`
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #333;
+  margin-bottom: 2px;
+  display: block;
+  padding-top: 10px;
+`;
+
+export const ColorLabel = styled.small`
+  color: ${({ theme }) => theme.colors.accent.main};
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  font-weight: 900;
 `;
